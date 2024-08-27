@@ -1,0 +1,94 @@
+CASOS DE USO DE ALTO NIVEL
+
+Actores: Editor, suscriptor, administrador, anunciante
+
+Numero: 001
+Caso de uso: Compra de anuncio
+Actores: Anunciante
+Descripcion: El anunciante va al apartado de comprar anuncio y selecciona un tipo de anuncio, el sistema muestra el precio y el tiempo de vigencia del anuncio, el usuario recarga saldo en la cartera digital y paga, el sistema muestra una ventana de confirmacion
+Tipo: Primario
+
+Numero: 002
+Caso de uso: Desactivacion de anuncio
+Actores: Anunciante
+Descripcion: El anunciante va al apartado de anuncios comprados, el sistema muestra una lista de todos los anuncios comprados por el anunciante, el anunciante presiona el boton desactivar en alguno de los anuncios, el sistema muestra una ventana de confirmacion
+Tipo: Secundario
+
+Numero: 003
+Caso de uso: Administracion de anuncios
+Actores: Administrador
+Descripcion: El administrador entra al apartado de administrar anuncios, el sistema muestra los tipos de anuncios con opciones para definir precio y tiempo en cada uno, el administrador cambia el precio y el tiempo de un tipo de anuncio, el sistema muestra una ventana de confirmacion
+Tipo: Primario
+
+Numero: 004
+Caso de uso: Registro de cuenta
+Actores: Administrador, Editor, Suscriptor, Anunciante
+Descripcion: El usuario entra al apartado de iniciar sesion, el sistema muestra una seccion de registrarse y otra de iniciar sesion, el usuario en el apartado de registro ingresa un nombre, una clave y presiona el boton de aceptar, el sistema muestra una ventana de confirmacion
+Tipo: Primario
+
+Numero: 005
+Caso de uso: Inicio de sesion
+Actores: Administrador, Editor, Suscriptor, Anunciante
+Descripcion: El usuario entra al apartado de iniciar sesion, el sistema muestra una seccion de registrarse y otra de iniciar sesion, el usuario en el apartado de iniciar sesion e ingresa su nombre y clave, presiona aceptar y el sistema muestra la interfaz principal del programa
+Tipo: Primario
+
+Numero: 006
+Caso de uso: Publicacion de revista
+Actores: Editor
+Descripcion: El editor ingresa al apartado de publicar revista, el sistema muestra un apartado para ingresar una imagen, nombre, descripcion, categoria, tags, una version inicial, fecha de publicacion, tambien muestra el precio por dia, el editor ingresa los datos y presiona el boton de publicar
+Tipo: Primario
+
+Numero: 007
+Caso de uso: Suscripcion a una revista
+Actores: Suscriptor
+Descripcion: El usuario ingresa a la revista de interes, el sistema muestra los datos de la revista, el usuario presiona el boton de suscribirse
+Tipo: Primario
+
+Numero: 008
+Caso de uso: Comentarios en una revista
+Actores: Suscriptor
+Descripcion: El usuario ingresa a la revista, va al apartado de comentarios, escribe un comentario y lo publica, el sistema muestra el comentario reflejado
+Tipo: Secundario
+
+Numero: 009
+Caso de uso: Edicion de perfil
+Actores: Suscriptor, editor
+Descripcion: El usuario ingresa al apartado de perfil, el sistema muestra muestra la informacion del usuario con opciones de cambiarla, el usuario presiona el boton editar, cambia la informacion y presiona el boton de aceptar, el sistema muestra el perfil con los datos cambiados
+Tipo: Secundario
+
+Numero: 010
+Caso de uso: Busqueda de revistas
+Actores: Suscriptor
+Descripcion: El usuario ingresa a la interfaz principal, el sistema muestra un area de texto para buscar, con la opcion de filtros, el usuario ingresa el nombre de la revista, los filtros y presiona el boton de buscar, el sistema muestra una lista de revistas que coincidan con la busqueda
+Tipo: Primario
+
+Numero: 011
+Caso de uso: Vizualizacion de revistas suscritas
+Actores: Suscriptor
+Descripcion: El usuario ingresa al apartado de revistas suscritas y el sistema muestra una lista de las revistas a las que el usuario esta suscrito
+Tipo: Secundario
+
+Numero: 012
+Caso de uso: Administrar revistas
+Actores: Administrador
+Descripcion: El usuario ingresa al apartado de administrar revistas, el sistema muestra una lista de todas las revistas, el usuario selecciona una revista y le asigna un precio por dia
+Tipo: Primario
+
+Numero: 013
+Caso de uso: Vizualizacion de revistas propias
+Actores: Editor
+Descripcion: El usuario ingresa al apartado de mis revistas y el sistema muestra una lista de revistas publicadas por el usuario
+Tipo: Secundario
+
+Numero: 014
+Caso de uso: Publicacion de una nueva version
+Actores: Editor
+Descripcion: El usuario ingresa a su revista, va al apartado de crear publicacion, ingresa la nueva version de la revista y presiona confirmar, el sistema mostrara la revista con su nueva version
+Tipo: Primaria
+
+Numero: 015
+Caso de uso: Vizualizacion de revistas propias
+Actores: Editor
+Descripcion: El usuario ingresa al apartado de mis revistas y el sistema muestra una lista de revistas publicadas por el usuario
+Tipo: Secundario
+
