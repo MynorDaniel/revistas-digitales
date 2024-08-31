@@ -1,6 +1,6 @@
 CASOS DE USO DE ALTO NIVEL
 
-Actores: Editor, suscriptor, administrador, anunciante
+Actores: Editor, Suscriptor, Administrador, Anunciante
 
 Numero: 001
 Caso de uso: Compra de anuncio
@@ -45,7 +45,7 @@ Descripcion: El usuario ingresa a la revista de interes, el sistema muestra los 
 Tipo: Primario
 
 Numero: 008
-Caso de uso: Comentarios en una revista
+Caso de uso: Comentarios
 Actores: Suscriptor
 Descripcion: El usuario ingresa a la revista, va al apartado de comentarios, escribe un comentario y lo publica, el sistema muestra el comentario reflejado
 Tipo: Secundario
@@ -69,7 +69,7 @@ Descripcion: El usuario ingresa al apartado de revistas suscritas y el sistema m
 Tipo: Secundario
 
 Numero: 012
-Caso de uso: Administrar revistas
+Caso de uso: Administracion de revistas
 Actores: Administrador
 Descripcion: El usuario ingresa al apartado de administrar revistas, el sistema muestra una lista de todas las revistas, el usuario selecciona una revista y le asigna un precio por dia
 Tipo: Primario
@@ -87,8 +87,31 @@ Descripcion: El usuario ingresa a su revista, va al apartado de crear publicacio
 Tipo: Primaria
 
 Numero: 015
-Caso de uso: Vizualizacion de revistas propias
+Caso de uso: Pago de cuota diaria
 Actores: Editor
-Descripcion: El usuario ingresa al apartado de mis revistas y el sistema muestra una lista de revistas publicadas por el usuario
+Descripcion: El usuario ingresa al apartado de la revista, va a las opciones y selecciona el boton de pagar, el sistema muestra el saldo disponible con la opcion de recargar la banca virtual, el usuario ingresa la cantidad a pagar y presiona el boton de aceptar
 Tipo: Secundario
 
+Numero: 016
+Caso de uso: Bloqueo de comentarios y me gusta
+Actores: Editor
+Descripcion: El usuario ingresa al apartado de la revista, va a las opciones y selecciona el boton toggle de bloquear comentarios y me gusta
+Tipo: Secundario
+
+Numero: 017
+Caso de uso: Bloqueo de suscriptores
+Actores: Editor
+Descripcion: El usuario va al apartado de la revista, va a opciones y presiona el boton de ver suscriptores, el sistema mostrara una lista de suscriptores con la opcion de bloquearlos
+Tipo: Secundario
+
+Numero: 018
+Caso de uso: Reporte editor
+Actores: Editor
+Descripcion: El usuario se dirige al apartado de reportes y reporte, el sistema mostrara el tipo de reporte, la opcion de ingresar un intervalo de tiempo y filtrar por revista, el usuario ingresa los datos y presiona aceptar, el sistema muestra el reporte
+Tipo: Secundario
+
+Numero: 019
+Caso de uso: Reporte administrador
+Actores: Administrador
+Descripcion: El usuario se dirige al apartado de reportes y reporte administrador, el sistema mostrara el tipo de reporte, la opcion de ingresar un intervalo de tiempo y filtrar por tipo de anuncios, el usuario ingresa los datos y presiona aceptar, el sistema muestra el reporte
+Tipo: Secundario
