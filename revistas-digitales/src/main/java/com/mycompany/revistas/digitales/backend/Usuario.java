@@ -4,10 +4,15 @@
  */
 package com.mycompany.revistas.digitales.backend;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author mynordma
  */
 public class Usuario {
     
+    public void registrar(HttpServletRequest req){
+        
+    }
 }
