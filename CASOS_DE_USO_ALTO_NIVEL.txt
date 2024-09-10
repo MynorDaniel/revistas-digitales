@@ -23,7 +23,7 @@ Tipo: Primario
 Numero: 004
 Caso de uso: Registro de cuenta
 Actores: Administrador, Editor, Suscriptor, Anunciante
-Descripcion: El usuario entra al apartado de iniciar sesion, el sistema muestra una seccion de registrarse y otra de iniciar sesion, el usuario en el apartado de registro ingresa un nombre, una clave y presiona el boton de aceptar, el sistema muestra una ventana de confirmacion
+Descripcion: El usuario entra al apartado de iniciar sesion, el sistema muestra una seccion de registrarse, elegir el rol y otra de iniciar sesion, el usuario en el apartado de registro ingresa un nombre, una clave, un rol y presiona el boton de aceptar, el sistema muestra una ventana de confirmacion
 Tipo: Primario
 
 Numero: 005
