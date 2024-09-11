@@ -4,7 +4,7 @@
  */
 package com.mycompany.revistas.digitales.controladores;
 
-import com.mycompany.revistas.digitales.backend.Usuario;
+import com.mycompany.revistas.digitales.backend.Registro;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,9 +21,30 @@ public class RegistroServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Usuario usuario = new Usuario();
-        usuario.registrar(req);
-        req.getRequestDispatcher("/home.jsp").forward(req, resp);
+        Registro registro = new Registro();
+        int registrar = registro.registrar(req);
+        
+        switch (registrar) {
+            case 0:
+                // Nombre duplicado
+                req.setAttribute("mensajeAtributo", "El nombre ya está registrado. Por favor, elige otro.");
+                break;
+            case 1:
+                // Campos vacíos
+                req.setAttribute("mensajeAtributo", "Por favor, completa todos los campos.");
+                break;
+            case 3:
+                // Error en la conexión con la base de datos
+                req.setAttribute("mensajeAtributo", "Error en la base de datos. Inténtalo de nuevo más tarde.");
+                break;
+            case 2:
+                // Error en la conexión con la base de datos
+                req.setAttribute("mensajeAtributo", "Registrado correctamente, ya puedes iniciar sesion.");
+                break;
+        }
+        
+        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        
     }
 
 }

@@ -12,8 +12,19 @@
         <title>Login</title>
     </head>
     <body>
+        <!-- Scriptlet para manejar los mensajes de advertencia -->
+        <%
+            String mensaje = (String) request.getAttribute("mensajeAtributo");
+            if (mensaje != null && !mensaje.isEmpty()) {
+        %>
+            <label id="mensaje">
+                <%= mensaje %>
+            </label>
+        <%
+            }
+        %>
         <h2>Inicio de Sesion</h2>
-        <form>
+        <form action="LoginServlet" method="POST">
             <input id="nombreLogin" name="nombreLogin" placeholder="Nombre"/>
             <br>
             <input id="claveLogin" name="claveLogin" placeholder="Clave"/>
