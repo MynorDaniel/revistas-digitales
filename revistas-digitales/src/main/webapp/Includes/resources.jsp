@@ -1,8 +1,3 @@
-<%-- 
-    Document   : resources
-    Created on : Sep 10, 2024, 8:06:40 PM
-    Author     : jose
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.js"></script>
