@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -25,7 +26,26 @@ public class LoginServlet extends HttpServlet {
         boolean usuarioLogueado = login.loguear(req);
         
         if(usuarioLogueado){
-            req.getRequestDispatcher("/home.jsp").forward(req, resp);
+            HttpSession sesion = req.getSession();
+            
+            sesion.setAttribute("nombreAtributo", login.getNombre());
+            sesion.setAttribute("rolAtributo", login.getRol());
+            
+            switch (login.getRol()) {
+                case "EDITOR":
+                    req.getRequestDispatcher("/Home/homeEditor.jsp").forward(req, resp);
+                    break;
+                case "SUSCRIPTOR":
+                    req.getRequestDispatcher("/Home/homeSuscriptor.jsp").forward(req, resp);
+                    break;
+                case "ADMINISTRADOR":
+                    req.getRequestDispatcher("/Home/homeAdministrador.jsp").forward(req, resp);
+                    break;
+                case "ANUNCIANTE":
+                    req.getRequestDispatcher("/Home/homeAnunciante.jsp").forward(req, resp);
+                    break;
+            }
+            
         }else{
             req.setAttribute("mensajeAtributo", "Error al iniciar sesion, revisa los datos.");
             req.getRequestDispatcher("/index.jsp").forward(req, resp);

@@ -43,6 +43,7 @@
                 <option value="EDITOR">EDITOR</option>
                 <option value="SUSCRIPTOR">SUSCRIPTOR</option>
                 <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                <option value="ANUNCIANTE">ANUNCIANTE</option>
             </select>
             <br>
             <button>Registrarse</button>

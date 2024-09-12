@@ -22,9 +22,9 @@ public class RegistroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Registro registro = new Registro();
-        int registrar = registro.registrar(req);
+        int resultadoRegistro = registro.registrar(req);
         
-        switch (registrar) {
+        switch (resultadoRegistro) {
             case 0:
                 // Nombre duplicado
                 req.setAttribute("mensajeAtributo", "El nombre ya está registrado. Por favor, elige otro.");
