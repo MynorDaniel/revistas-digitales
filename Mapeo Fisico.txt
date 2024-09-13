@@ -1,13 +1,31 @@
 CREATE SCHEMA REVISTAS_DIGITALES;
+
 USE REVISTAS_DIGITALES;
+
 CREATE TABLE usuario (
-nombre VARCHAR(100) NOT NULL,
-clave VARCHAR(100) NOT NULL,
-foto LONGBLOB,
-hobbies TEXT,
-intereses TEXT,
-descripcion TEXT,
-rol VARCHAR(15) NOT NULL,
-CONSTRAINT pk_usuario PRIMARY KEY (nombre)
+    nombre VARCHAR(100) NOT NULL,
+    clave VARCHAR(100) NOT NULL,
+    foto LONGBLOB,
+    hobbies TEXT,
+    intereses TEXT,
+    descripcion TEXT,
+    rol VARCHAR(15) NOT NULL,
+    CONSTRAINT pk_usuario PRIMARY KEY (nombre)
 );
+
+CREATE TABLE anuncio (
+    anunciante VARCHAR(100) NOT NULL,
+    fecha DATE NOT NULL,
+    tipo VARCHAR(10) NOT NULL,
+    vigencia VARCHAR(10) NOT NULL,
+    texto TEXT,
+    imagen LONGBLOB,
+    video LONGBLOB,
+    estado VARCHAR(10) NOT NULL,
+    precio DECIMAL(10, 2),
+    CONSTRAINT pk_anuncio PRIMARY KEY (anunciante, fecha),
+    CONSTRAINT fk_anunciante FOREIGN KEY (anunciante) REFERENCES usuario(nombre)
+);
+
+
 

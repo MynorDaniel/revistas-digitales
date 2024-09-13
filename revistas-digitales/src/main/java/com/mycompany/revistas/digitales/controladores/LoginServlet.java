@@ -5,6 +5,7 @@
 package com.mycompany.revistas.digitales.controladores;
 
 import com.mycompany.revistas.digitales.backend.Login;
+import com.mycompany.revistas.digitales.backend.usuarios.Anunciante;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -42,6 +43,9 @@ public class LoginServlet extends HttpServlet {
                     req.getRequestDispatcher("/Home/homeAdministrador.jsp").forward(req, resp);
                     break;
                 case "ANUNCIANTE":
+                    Anunciante anunciante = new Anunciante(login.getNombre());
+                    anunciante.recuperarAnunciosEnLaBD();
+                    sesion.setAttribute("anunciosAtribute", anunciante.getAnuncios());
                     req.getRequestDispatcher("/Home/homeAnunciante.jsp").forward(req, resp);
                     break;
             }

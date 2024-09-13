@@ -1,2 +1,4 @@
 Usuario ingresa datos de perfil muy grandes.
-
+Fechas repetidas.
+Precio mayor a diez digitos.
+Anuncio con elementos validos.
