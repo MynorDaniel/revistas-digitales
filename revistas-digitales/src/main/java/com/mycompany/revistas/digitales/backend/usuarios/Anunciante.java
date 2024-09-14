@@ -4,7 +4,7 @@
  */
 package com.mycompany.revistas.digitales.backend.usuarios;
 
-import com.mycompany.revistas.digitales.backend.Anuncio;
+import com.mycompany.revistas.digitales.backend.anuncios.Anuncio;
 import com.mycompany.revistas.digitales.backend.bd.ConexionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,7 +43,7 @@ public class Anunciante extends Usuario {
                     String estado = rs.getString("estado");
                     double precio = rs.getDouble("precio");
 
-                    Anuncio anuncio = new Anuncio(fecha, tipo, vigencia, texto, imagen, video, estado, precio);
+                    Anuncio anuncio = new Anuncio(fecha.toLocalDate(), tipo, vigencia, texto, imagen, video, estado, precio);
                     anuncios.add(anuncio);
                 }
             }

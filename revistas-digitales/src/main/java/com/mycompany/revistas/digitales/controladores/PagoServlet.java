@@ -4,84 +4,82 @@
  */
 package com.mycompany.revistas.digitales.controladores;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import com.mycompany.revistas.digitales.backend.anuncios.Anuncio;
+import com.mycompany.revistas.digitales.backend.anuncios.TipoAnuncio;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.time.LocalDate;
 
 /**
  *
  * @author mynordma
  */
 @WebServlet(name = "PagoServlet", urlPatterns = {"/PagoServlet"})
+@MultipartConfig
 public class PagoServlet extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PagoServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet PagoServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        // Obtener los valores seleccionados por el usuario
+        String tipoAnuncio = request.getParameter("tipoAnuncio");
+        String vigencia = request.getParameter("vigencia");
+        String fecha = request.getParameter("fecha");
+        String texto = request.getParameter("textoAnuncio");
+        byte[] imagen = partAByte(request.getPart("imagenAnuncio"));
+        byte[] video = partAByte(request.getPart("videoAnuncio"));
+        TipoAnuncio tipo = new TipoAnuncio(tipoAnuncio);
+        double precio = tipo.obtenerPrecio();
+        
+        Anuncio anuncio = new Anuncio(LocalDate.parse(fecha), tipoAnuncio, vigencia, texto, 
+        imagen, video, "PENDIENTE", precio);
+        
+        
+        // Guardar los parametros en la sesion
+
+        HttpSession sesion = request.getSession();
+            
+        sesion.setAttribute("anuncioAtribute", anuncio);
+        
+        request.getRequestDispatcher("/pagar.jsp").forward(request, response);
     }
+    
+    private byte[] partAByte(Part part) throws IOException {
+        // Verifica si el Part tiene un contenido
+        if (part == null) {
+            throw new IllegalArgumentException("El objeto Part no puede ser nulo.");
+        }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+        try (InputStream inputStream = part.getInputStream();
+             ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+
+            // Lee el contenido del archivo en bloques y lo escribe en el ByteArrayOutputStream
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+
+            // Devuelve el contenido como un arreglo de bytes
+            return outputStream.toByteArray();
+        }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
     @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException{
+        
+        request.getRequestDispatcher("/comprarAnuncio.jsp").forward(request, response);
+    }
 }

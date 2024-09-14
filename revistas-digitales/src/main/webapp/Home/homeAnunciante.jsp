@@ -4,14 +4,14 @@
     Author     : mynordma
 --%>
 
+<%@page import="com.mycompany.revistas.digitales.backend.anuncios.Anuncio"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.mycompany.revistas.digitales.backend.Anuncio"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home Anunciante</title>
+        <title>Home</title>
         <jsp:include page="/Includes/resources.jsp"/>
     </head>
     <body>

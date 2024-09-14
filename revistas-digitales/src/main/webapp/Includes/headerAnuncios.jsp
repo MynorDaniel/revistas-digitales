@@ -13,7 +13,7 @@
             </a>
 
             <!-- Título centrado -->
-            <h1 class="mx-auto text-center" style="font-size: 24px;">Revistas Digitales</h1>
+            <h1 class="mx-auto text-center" style="font-size: 24px;">REVISTAS DIGITALES</h1>
 
             <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                 <li>

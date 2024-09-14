@@ -17,7 +17,7 @@
         <div class="container mt-4">
             <h2>Comprar Anuncio</h2>
             <br>
-            <form method="POST" id="anuncioForm" action="${pageContext.request.contextPath}/PagoServlet">
+            <form enctype="multipart/form-data" method="GET" id="anuncioForm" action="${pageContext.request.contextPath}/PagoServlet">
 
                 <div class="form-group mb-3">
                     <label for="tipoAnuncio" class="form-label">Tipo</label>
