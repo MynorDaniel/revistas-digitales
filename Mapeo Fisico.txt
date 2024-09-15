@@ -14,6 +14,7 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE anuncio (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     anunciante VARCHAR(100) NOT NULL,
     fecha DATE NOT NULL,
     tipo VARCHAR(10) NOT NULL,
@@ -23,9 +24,9 @@ CREATE TABLE anuncio (
     video LONGBLOB,
     estado VARCHAR(10) NOT NULL,
     precio DECIMAL(10, 2),
-    CONSTRAINT pk_anuncio PRIMARY KEY (anunciante, fecha),
     CONSTRAINT fk_anunciante FOREIGN KEY (anunciante) REFERENCES usuario(nombre)
 );
+
 
 CREATE TABLE carteraDigital (
     usuario VARCHAR(100) NOT NULL,
@@ -34,5 +35,13 @@ CREATE TABLE carteraDigital (
     CONSTRAINT fk_usuario FOREIGN KEY (usuario) REFERENCES usuario(nombre) ON DELETE CASCADE
 );
 
+CREATE TABLE tipoAnuncio (
+    nombre VARCHAR(50) PRIMARY KEY,
+    precio DECIMAL(10, 2) DEFAULT 50.00
+);
 
-
+INSERT INTO tipoAnuncio (nombre)
+VALUES
+    ('Txt'),
+    ('Txt-Img'),
+    ('Video');

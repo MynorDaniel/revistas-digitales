@@ -17,7 +17,7 @@
         <div class="container mt-4">
             <h2>Comprar Anuncio</h2>
             <br>
-            <form enctype="multipart/form-data" method="GET" id="anuncioForm" action="${pageContext.request.contextPath}/PagoServlet">
+            <form enctype="multipart/form-data" method="POST" id="anuncioForm" action="${pageContext.request.contextPath}/AnuncioServlet">
 
                 <div class="form-group mb-3">
                     <label for="tipoAnuncio" class="form-label">Tipo</label>
@@ -62,7 +62,7 @@
                 </div>
                 
                 <!-- Botón deshabilitado por defecto -->
-                <button type="submit" class="btn btn-primary" id="pagarBtn" disabled>Pagar</button>
+                <button type="submit" class="btn btn-primary" id="pagarBtn" disabled>Confirmar</button>
             </form>
         </div>
         <jsp:include page="/Includes/footer.jsp"/>

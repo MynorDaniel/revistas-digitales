@@ -60,7 +60,7 @@ public class CarteraDigital {
             pstmtUpdate.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error al recargar");
         }
     }
 }

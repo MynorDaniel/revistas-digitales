@@ -2,13 +2,13 @@ CASOS DE USO DE ALTO NIVEL
 
 Actores: Editor, Suscriptor, Administrador, Anunciante
 
-Numero: 001
+Numero: 001 ---
 Caso de uso: Compra de anuncio
 Actores: Anunciante
 Descripcion: El anunciante va al apartado de comprar anuncio y selecciona un tipo de anuncio, el sistema muestra el precio y el tiempo de vigencia del anuncio, el usuario recarga saldo en la cartera digital y paga, el sistema muestra una ventana de confirmacion
 Tipo: Primario
 
-Numero: 002
+Numero: 002 ---
 Caso de uso: Desactivacion de anuncio
 Actores: Anunciante
 Descripcion: El anunciante va al apartado de anuncios comprados, el sistema muestra una lista de todos los anuncios comprados por el anunciante, el anunciante presiona el boton desactivar en alguno de los anuncios, el sistema muestra una ventana de confirmacion
@@ -20,13 +20,13 @@ Actores: Administrador
 Descripcion: El administrador entra al apartado de administrar anuncios, el sistema muestra los tipos de anuncios con opciones para definir precio y tiempo en cada uno, el administrador cambia el precio y el tiempo de un tipo de anuncio, el sistema muestra una ventana de confirmacion
 Tipo: Primario
 
-Numero: 004
+Numero: 004 ---
 Caso de uso: Registro de cuenta
 Actores: Administrador, Editor, Suscriptor, Anunciante
 Descripcion: El usuario entra al apartado de iniciar sesion, el sistema muestra una seccion de registrarse, elegir el rol y otra de iniciar sesion, el usuario en el apartado de registro ingresa un nombre, una clave, un rol y presiona el boton de aceptar, el sistema muestra una ventana de confirmacion
 Tipo: Primario
 
-Numero: 005
+Numero: 005 ---
 Caso de uso: Inicio de sesion
 Actores: Administrador, Editor, Suscriptor, Anunciante
 Descripcion: El usuario entra al apartado de iniciar sesion, el sistema muestra una seccion de registrarse y otra de iniciar sesion, el usuario en el apartado de iniciar sesion e ingresa su nombre y clave, presiona aceptar y el sistema muestra la interfaz principal del programa

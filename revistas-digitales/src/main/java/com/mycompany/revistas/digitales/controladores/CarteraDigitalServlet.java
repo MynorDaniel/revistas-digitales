@@ -6,7 +6,6 @@ package com.mycompany.revistas.digitales.controladores;
 
 import com.mycompany.revistas.digitales.backend.CarteraDigital;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

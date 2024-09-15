@@ -34,6 +34,7 @@ public class Anunciante extends Usuario {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
+                    int id = rs.getInt("id");
                     java.sql.Date fecha = rs.getDate("fecha");
                     String tipo = rs.getString("tipo");
                     String vigencia = rs.getString("vigencia");
@@ -43,13 +44,14 @@ public class Anunciante extends Usuario {
                     String estado = rs.getString("estado");
                     double precio = rs.getDouble("precio");
 
-                    Anuncio anuncio = new Anuncio(fecha.toLocalDate(), tipo, vigencia, texto, imagen, video, estado, precio);
+                    Anuncio anuncio = new Anuncio(id, fecha.toLocalDate(), tipo, vigencia, texto, imagen, video, estado, precio);
                     anuncios.add(anuncio);
+                    
                 }
             }
 
         } catch (SQLException e) {
-            System.out.println("Error al recuperar los anuncios: " + e.getMessage());
+            System.out.println("Error al recuperar los anuncios");
         }
     }
 
