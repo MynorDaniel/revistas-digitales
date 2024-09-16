@@ -1,6 +1,6 @@
 <%-- 
-    Document   : homeEditor
-    Created on : Sep 12, 2024, 12:29:46 AM
+    Document   : perfil
+    Created on : Sep 15, 2024, 5:05:01 PM
     Author     : mynordma
 --%>
 
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home</title>
+        <title>Perfil</title>
     </head>
     <body>
-        <jsp:include page="/Includes/prueba.jsp"/>
+        <h1>Hello World!</h1>
     </body>
 </html>

@@ -5,4 +5,5 @@ Anuncio con elementos validos.
 Usuario no tiene suficiente dinero.
 Imagen y video.
 Implementar todos los try with resources.
+Input empieza con cero.
 

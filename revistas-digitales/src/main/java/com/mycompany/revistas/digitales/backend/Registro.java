@@ -47,17 +47,14 @@ public class Registro {
     }
     
     private void registrarEnLaBD(){
+        
+        String sql = "INSERT INTO usuario (nombre, clave, rol) VALUES (?, ?, ?)";
+        
         if(tipoError == 1){
             return;
         }
-        try {
-            Connection conexion = ConexionBD.obtenerConexion();
-            
-            // La query para insertar un usuario
-            String sql = "INSERT INTO usuario (nombre, clave, rol) VALUES (?, ?, ?)";
-            
-            // Usamos PreparedStatement para evitar SQL Injection
-            PreparedStatement stmt = conexion.prepareStatement(sql);
+        try (Connection conexion = ConexionBD.obtenerConexion();
+                PreparedStatement stmt = conexion.prepareStatement(sql);) {
             
             // Establecemos los valores para la consulta
             stmt.setString(1, nombre);

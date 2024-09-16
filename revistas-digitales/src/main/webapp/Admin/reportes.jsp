@@ -1,6 +1,6 @@
 <%-- 
-    Document   : homeEditor
-    Created on : Sep 12, 2024, 12:29:46 AM
+    Document   : reportes
+    Created on : Sep 15, 2024, 4:44:04 PM
     Author     : mynordma
 --%>
 
@@ -9,9 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home</title>
+        <title>Reportes</title>
+        <jsp:include page="/Includes/resources.jsp"/>
     </head>
     <body>
-        <jsp:include page="/Includes/prueba.jsp"/>
+        <jsp:include page="/Includes/headerAdmin.jsp"/>
     </body>
 </html>
