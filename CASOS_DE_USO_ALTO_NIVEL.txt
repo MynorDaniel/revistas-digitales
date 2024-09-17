@@ -32,10 +32,10 @@ Actores: Administrador, Editor, Suscriptor, Anunciante
 Descripcion: El usuario entra al apartado de iniciar sesion, el sistema muestra una seccion de registrarse y otra de iniciar sesion, el usuario en el apartado de iniciar sesion e ingresa su nombre y clave, presiona aceptar y el sistema muestra la interfaz principal del programa
 Tipo: Primario
 
-Numero: 006
+Numero: 006 ---
 Caso de uso: Publicacion de revista
 Actores: Editor
-Descripcion: El editor ingresa al apartado de publicar revista, el sistema muestra un apartado para ingresar una imagen, nombre, descripcion, categoria, tags, una version inicial, fecha de publicacion, tambien muestra el precio por dia, el editor ingresa los datos y presiona el boton de publicar
+Descripcion: El editor ingresa al apartado de publicar revista, el sistema muestra un apartado para ingresar una imagen, nombre, descripcion, categoria, tags, fecha de publicacion, el editor ingresa los datos y presiona el boton de publicar
 Tipo: Primario
 
 Numero: 007
@@ -74,7 +74,7 @@ Actores: Administrador
 Descripcion: El usuario ingresa al apartado de administrar revistas, el sistema muestra una lista de todas las revistas, el usuario selecciona una revista y le asigna un precio por dia
 Tipo: Primario
 
-Numero: 013
+Numero: 013 ---
 Caso de uso: Vizualizacion de revistas propias
 Actores: Editor
 Descripcion: El usuario ingresa al apartado de mis revistas y el sistema muestra una lista de revistas publicadas por el usuario

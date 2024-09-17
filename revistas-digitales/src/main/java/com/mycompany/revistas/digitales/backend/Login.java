@@ -38,9 +38,9 @@ public class Login {
         // Modificar la consulta SQL para también seleccionar el rol
         String sql = "SELECT rol FROM usuario WHERE nombre = ? AND clave = ?";
 
-        try {
-            Connection conexion = ConexionBD.obtenerConexion();
-            PreparedStatement stmt = conexion.prepareStatement(sql);
+        try (Connection conexion = ConexionBD.obtenerConexion();
+            PreparedStatement stmt = conexion.prepareStatement(sql);) {
+            
 
             // Establecer los valores para la consulta
             stmt.setString(1, nombre);

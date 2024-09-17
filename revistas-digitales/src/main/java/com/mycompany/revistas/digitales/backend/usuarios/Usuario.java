@@ -18,7 +18,6 @@ public abstract class Usuario {
         this.rol = rol;
     }
 
-    // Métodos concretos que pueden ser compartidos por todas las subclases
     public String getNombre() {
         return nombre;
     }

@@ -6,6 +6,7 @@ package com.mycompany.revistas.digitales.controladores;
 
 import com.mycompany.revistas.digitales.backend.Login;
 import com.mycompany.revistas.digitales.backend.usuarios.Anunciante;
+import com.mycompany.revistas.digitales.backend.usuarios.Editor;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -34,6 +35,9 @@ public class LoginServlet extends HttpServlet {
             
             switch (login.getRol()) {
                 case "EDITOR":
+                    Editor editor = new Editor(login.getNombre());
+                    editor.recuperarRevistasDB();
+                    sesion.setAttribute("revistasAtributo", editor.getRevistas());
                     req.getRequestDispatcher("/Home/homeEditor.jsp").forward(req, resp);
                     break;
                 case "SUSCRIPTOR":

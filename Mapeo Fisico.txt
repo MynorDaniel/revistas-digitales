@@ -45,3 +45,64 @@ VALUES
     ('Txt'),
     ('Txt-Img'),
     ('Video');
+
+CREATE TABLE tag (
+    nombre VARCHAR(100) PRIMARY KEY
+);
+
+INSERT INTO tag (nombre) VALUES
+('Tecnologia'),
+('Deportes'),
+('Ciencia'),
+('Arte'),
+('Historia'),
+('Economia'),
+('Politica'),
+('Salud'),
+('Literatura'),
+('Entretenimiento'),
+('Musica'),
+('Cine'),
+('Viajes'),
+('Gastronomia'),
+('Educacion'),
+('Moda'),
+('Cultura'),
+('Medio Ambiente'),
+('Sociologia'),
+('Psicologia');
+
+CREATE TABLE revista (
+    nombre VARCHAR(100) NOT NULL,
+    editor VARCHAR(100) NOT NULL,
+    bloqueo VARCHAR(5),
+    fecha DATE,
+    costo DECIMAL(10,2),
+    descripcion TEXT,
+    categoria VARCHAR(50),
+    CONSTRAINT pk_revista PRIMARY KEY (nombre),
+    CONSTRAINT fk_revista_editor FOREIGN KEY (editor) REFERENCES usuario(nombre)
+);
+
+CREATE TABLE revista_tag (
+    revista_nombre VARCHAR(100) NOT NULL,
+    tag_nombre VARCHAR(100) NOT NULL,
+    CONSTRAINT pk_revista_tag PRIMARY KEY (revista_nombre, tag_nombre),
+    CONSTRAINT fk_revista_tag_revista FOREIGN KEY (revista_nombre) REFERENCES revista(nombre),
+    CONSTRAINT fk_revista_tag_tag FOREIGN KEY (tag_nombre) REFERENCES tag(nombre)
+);
+
+CREATE TABLE publicacion (
+    version INT NOT NULL AUTO_INCREMENT,
+    revista VARCHAR(100) NOT NULL,
+    pdf LONGBLOB,
+    PRIMARY KEY (version),
+    CONSTRAINT fk_publicacion_revista
+        FOREIGN KEY (revista) REFERENCES revista(nombre)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+
+
+

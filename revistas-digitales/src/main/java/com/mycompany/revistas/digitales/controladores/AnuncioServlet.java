@@ -43,9 +43,6 @@ public class AnuncioServlet extends HttpServlet {
         
         Anuncio anuncio = new Anuncio(Anuncio.getTotal(), LocalDate.parse(fecha), tipoAnuncio, vigencia, texto, 
         imagen, video, "ACTIVADO", precio);
-        
-        
-        // Guardar los parametros en la sesion
 
         HttpSession sesion = request.getSession();
         

@@ -23,7 +23,7 @@
     <body>
         <jsp:include page="/Includes/headerAnuncios.jsp"/>
         <%
-            String mensaje = (String) request.getAttribute("alertaAtributo");
+            String mensaje = (String) request.getAttribute("mensajeAtributo");
             if (mensaje != null && !mensaje.isEmpty()) {
         %>
             <div class="alert alert-warning" role="alert">
