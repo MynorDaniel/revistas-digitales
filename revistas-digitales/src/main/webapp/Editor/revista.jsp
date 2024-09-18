@@ -84,32 +84,45 @@
             <br>
             <!-- Tabla de versiones -->         
             <table class="table table-striped table-dark">
-            <thead>
-                <tr>
-                    <th scope="col">Versión</th>
-                    <th scope="col">PDF</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%
-                    ArrayList<Publicacion> publicaciones = (ArrayList<Publicacion>) session.getAttribute("publicacionesAtributo");
-                    
-                    if (publicaciones != null) {
-                        for (Publicacion pub : publicaciones) {
-                            int version = pub.getVersion();
-                            
-                            out.println("<tr>");
-                            out.println("<td>" + version + "</td>");
+                <thead>
+                    <tr>
+                        <th scope="col">Versión</th>
+                        <th scope="col">PDF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        ArrayList<Publicacion> publicaciones = (ArrayList<Publicacion>) session.getAttribute("publicacionesAtributo");
 
-                            out.println("<td><a href='verPdf.jsp?version=" + version + "'><i class='bi bi-file-earmark-pdf fs-3'></i></a></td>");
-                            out.println("</tr>");
+                        if (publicaciones != null && !publicaciones.isEmpty()) {
+                            for (Publicacion pub : publicaciones) {
+                                int version = pub.getVersion();
+                    %>
+                                <tr>
+                                    <td><%= version %></td>
+                                    <td>
+                                        <form action="${pageContext.request.contextPath}/PublicacionServlet" method="GET">
+                                            <input type="hidden" name="version" value="<%= version %>">
+                                            <button type="submit" class="btn btn-primary" title="Ver PDF">
+                                                <i class="bi bi-file-earmark-pdf fs-3"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                    <%
+                            }
+                        } else {
+                    %>
+                        <tr>
+                            <td colspan="2" class="text-center">No hay publicaciones disponibles.</td>
+                        </tr>
+                    <%
                         }
-                    } else {
-                        out.println("<tr><td colspan='2'>No hay publicaciones disponibles.</td></tr>");
-                    }
-                %>
-            </tbody>
-        </table>
+                    %>
+                </tbody>
+            </table>
+
+
                       
                       
              <!-- Sección de comentarios -->

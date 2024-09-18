@@ -30,8 +30,9 @@ public class EditarRevistaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Part filePart = request.getPart("pdf");
-        boolean sinArchivo = (filePart == null || filePart.getSize() == 0);
+        // Guardar parametros
+        Part pdf = request.getPart("pdf");
+        boolean sinArchivo = (pdf == null || pdf.getSize() == 0);
         String bloqueo = request.getParameter("bloqueo");
         
         HttpSession sesion = request.getSession(false);
@@ -39,8 +40,9 @@ public class EditarRevistaServlet extends HttpServlet {
         Revista.cambiarBloqueo(revista.getNombre(), bloqueo);
 
         if(!sinArchivo){
-            try (InputStream fileContent = filePart.getInputStream()) {
-                Publicacion publicacion = new Publicacion(revista.getNombre(), fileContent);
+            try (InputStream fileContent = pdf.getInputStream()) {
+                Publicacion publicacion = new Publicacion(revista.getNombre(), Revista.getNumeroVersiones(revista.getNombre()) + 1);
+                publicacion.setFileContent(fileContent);
                 publicacion.guardarPublicacionBD();
             }catch(Exception e){
                 System.out.println("Error revista servlet");

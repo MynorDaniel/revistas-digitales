@@ -92,17 +92,18 @@ CREATE TABLE revista_tag (
     CONSTRAINT fk_revista_tag_tag FOREIGN KEY (tag_nombre) REFERENCES tag(nombre)
 );
 
-CREATE TABLE publicacion (
-    version INT NOT NULL AUTO_INCREMENT,
-    revista VARCHAR(100) NOT NULL,
-    pdf LONGBLOB,
-    PRIMARY KEY (version),
-    CONSTRAINT fk_publicacion_revista
-        FOREIGN KEY (revista) REFERENCES revista(nombre)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
+CREATE TABLE version (
+    numero INT NOT NULL,
+    PRIMARY KEY (numero)
 );
 
-
+CREATE TABLE publicacion (
+    revista VARCHAR(100) NOT NULL,
+    version INT NOT NULL,
+    pdf LONGBLOB,
+    PRIMARY KEY (revista, version),
+    CONSTRAINT fk_revista FOREIGN KEY (revista) REFERENCES revista(nombre),
+    CONSTRAINT fk_version FOREIGN KEY (version) REFERENCES version(numero)
+);
 
 

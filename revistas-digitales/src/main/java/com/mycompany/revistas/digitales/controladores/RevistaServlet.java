@@ -8,7 +8,6 @@ import com.mycompany.revistas.digitales.backend.editor.Publicacion;
 import com.mycompany.revistas.digitales.backend.editor.Revista;
 import com.mycompany.revistas.digitales.backend.usuarios.Editor;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

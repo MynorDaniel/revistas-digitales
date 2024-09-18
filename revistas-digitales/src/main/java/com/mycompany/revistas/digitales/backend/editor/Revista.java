@@ -5,6 +5,7 @@
 package com.mycompany.revistas.digitales.backend.editor;
 
 import com.mycompany.revistas.digitales.backend.bd.ConexionBD;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -187,4 +188,51 @@ public class Revista {
             System.out.println("Error al actualizar el bloqueo de la revista: " + e.getMessage());
         }
     }
+    
+    public static int getNumeroVersiones(String nombreRevista) {
+        int numeroVersiones = 0;
+
+        String sql = "SELECT COUNT(*) FROM publicacion WHERE revista = ?";
+
+        try (Connection conn = ConexionBD.obtenerConexion(); 
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, nombreRevista);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    numeroVersiones = rs.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en get numero versiones");
+        }
+
+        return numeroVersiones;
+    }
+
+    public static InputStream getPDF(String nombre, String version) {
+        String query = "SELECT pdf FROM publicacion WHERE revista = ? AND version = ?";
+        InputStream pdfStream = null;
+
+        try (Connection conn = ConexionBD.obtenerConexion();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            // Asigna los valores a los parámetros de la consulta
+            stmt.setString(1, nombre);
+            stmt.setInt(2, Integer.parseInt(version));
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    pdfStream = rs.getBinaryStream("pdf");
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error en get pdf");
+        }
+
+        return pdfStream;
+    }
+
 }

@@ -80,37 +80,31 @@ Actores: Editor
 Descripcion: El usuario ingresa al apartado de mis revistas y el sistema muestra una lista de revistas publicadas por el usuario
 Tipo: Secundario
 
-Numero: 014
+Numero: 014 ---
 Caso de uso: Publicacion de una nueva version
 Actores: Editor
 Descripcion: El usuario ingresa a su revista, va al apartado de crear publicacion, ingresa la nueva version de la revista y presiona confirmar, el sistema mostrara la revista con su nueva version
 Tipo: Primaria
 
-Numero: 015
-Caso de uso: Pago de cuota diaria
-Actores: Editor
-Descripcion: El usuario ingresa al apartado de la revista, va a las opciones y selecciona el boton de pagar, el sistema muestra el saldo disponible con la opcion de recargar la banca virtual, el usuario ingresa la cantidad a pagar y presiona el boton de aceptar
-Tipo: Secundario
-
-Numero: 016
+Numero: 015 ---
 Caso de uso: Bloqueo de comentarios y me gusta
 Actores: Editor
 Descripcion: El usuario ingresa al apartado de la revista, va a las opciones y selecciona el boton toggle de bloquear comentarios y me gusta
 Tipo: Secundario
 
-Numero: 017
+Numero: 016
 Caso de uso: Bloqueo de suscriptores
 Actores: Editor
 Descripcion: El usuario va al apartado de la revista, va a opciones y presiona el boton de ver suscriptores, el sistema mostrara una lista de suscriptores con la opcion de bloquearlos
 Tipo: Secundario
 
-Numero: 018
+Numero: 017
 Caso de uso: Reporte editor
 Actores: Editor
 Descripcion: El usuario se dirige al apartado de reportes y reporte, el sistema mostrara el tipo de reporte, la opcion de ingresar un intervalo de tiempo y filtrar por revista, el usuario ingresa los datos y presiona aceptar, el sistema muestra el reporte
 Tipo: Secundario
 
-Numero: 019
+Numero: 018
 Caso de uso: Reporte administrador
 Actores: Administrador
 Descripcion: El usuario se dirige al apartado de reportes y reporte administrador, el sistema mostrara el tipo de reporte, la opcion de ingresar un intervalo de tiempo y filtrar por tipo de anuncios, el usuario ingresa los datos y presiona aceptar, el sistema muestra el reporte

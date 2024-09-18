@@ -19,68 +19,76 @@ import java.util.ArrayList;
 public class Publicacion {
 
     private final String nombreRevista;
-    private final InputStream fileContent;
+    private InputStream pdf;
     private int version;
 
-    public Publicacion(String nombre, InputStream fileContent) {
+    public Publicacion(String nombre, int version) {
         this.nombreRevista = nombre;
-        this.fileContent = fileContent;
-    }
-
-    public void guardarPublicacionBD() {
-        String query = "INSERT INTO publicacion (revista, pdf) VALUES (?, ?)";
-        
-        try (Connection conn = ConexionBD.obtenerConexion();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-             
-            stmt.setString(1, nombreRevista);
-            stmt.setBlob(2, fileContent);
-            
-            stmt.executeUpdate();
-            System.out.println("Publicación guardada con éxito.");
-            
-        } catch (SQLException e) {
-            System.out.println("Error al guardar la publicación en la base de datos.");
-        }
+        this.version = version;
     }
     
     public static ArrayList<Publicacion> recuperarPublicaciones(String nombreRevista) {
         ArrayList<Publicacion> publicaciones = new ArrayList<>();
-        String query = "SELECT * FROM publicacion WHERE revista = ?";
-        
-        try (Connection conn = ConexionBD.obtenerConexion();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-             
+
+        String sql = "SELECT version FROM publicacion WHERE revista = ?";
+
+        try (Connection conn = ConexionBD.obtenerConexion(); 
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setString(1, nombreRevista);
 
             try (ResultSet rs = stmt.executeQuery()) {
+                // Recorrer el ResultSet y crear instancias de Publicacion
                 while (rs.next()) {
                     int version = rs.getInt("version");
-                    String revista = rs.getString("revista");
-                    InputStream pdf = rs.getBlob("pdf").getBinaryStream();
-                    Publicacion publicacion = new Publicacion(revista, pdf);
-                    publicacion.setVersion(version);
-                    publicaciones.add(publicacion);
+                    publicaciones.add(new Publicacion(nombreRevista, version));
                 }
             }
-            
         } catch (SQLException e) {
-            System.out.println("Error al recuperar las publicaciones de la base de datos.");
+            System.out.println("Error en recuperar publicaciones");
         }
-        
+
         return publicaciones;
     }
 
+    public void guardarPublicacionBD() {
+        String insertVersionSQL = "INSERT INTO version (numero) SELECT ? WHERE NOT EXISTS (SELECT 1 FROM version WHERE numero = ?)";
+        String insertPublicacionSQL = "INSERT INTO publicacion (revista, version, pdf) VALUES (?, ?, ?)";
+
+        try (Connection conn = ConexionBD.obtenerConexion();
+             PreparedStatement versionStmt = conn.prepareStatement(insertVersionSQL);
+             PreparedStatement publicacionStmt = conn.prepareStatement(insertPublicacionSQL)) {
+
+            versionStmt.setInt(1, this.version);
+            versionStmt.setInt(2, this.version);
+            versionStmt.executeUpdate();
+
+            publicacionStmt.setString(1, this.nombreRevista); 
+            publicacionStmt.setInt(2, this.version);       
+            publicacionStmt.setBlob(3, this.pdf);     
+
+            int filasInsertadas = publicacionStmt.executeUpdate();
+            if (filasInsertadas > 0) {
+                System.out.println("Publicación guardada exitosamente.");
+            } else {
+                System.out.println("No se pudo guardar la publicación.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error en guardar publicacion");
+        }
+    }
+
     public InputStream getPDF() {
-        return fileContent;
+        return pdf;
+    }
+
+    public void setFileContent(InputStream pdf) {
+        this.pdf = pdf;
     }
 
     public int getVersion() {
         return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
     }
     
     
