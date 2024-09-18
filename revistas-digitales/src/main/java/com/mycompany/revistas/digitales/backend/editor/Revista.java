@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -233,6 +234,89 @@ public class Revista {
         }
 
         return pdfStream;
+    }
+
+    public static ArrayList<Revista> getRevistas(String nombreRevista, String categoria, String[] tags) {
+        ArrayList<Revista> revistas = new ArrayList<>();
+        String sql;
+        try (Connection conn = ConexionBD.obtenerConexion()) {
+            PreparedStatement stmt;
+
+            // Si se proporciona un nombre de revista, solo buscar esa revista
+            if (nombreRevista != null && !nombreRevista.isEmpty()) {
+                sql = "SELECT * FROM revista WHERE nombre = ?";
+                stmt = conn.prepareStatement(sql);
+                stmt.setString(1, nombreRevista);
+            } else {
+                // Si no hay nombre, buscar por categoría y tags
+                StringBuilder query = new StringBuilder("SELECT DISTINCT r.* FROM revista r ");
+                if (tags != null && tags.length > 0) {
+                    query.append("JOIN revista_tag rt ON r.nombre = rt.revista_nombre ");
+                }
+                if(categoria != null && !categoria.trim().isEmpty()){
+                   query.append("WHERE r.categoria = ?"); 
+                   if (tags != null && tags.length > 0) {
+                        query.append(" AND rt.tag_nombre IN (");
+                        query.append(String.join(",", Collections.nCopies(tags.length, "?")));
+                        query.append(")");
+                    }
+                }else{
+                   if (tags != null && tags.length > 0) {
+                    query.append(" WHERE rt.tag_nombre IN (");
+                    query.append(String.join(",", Collections.nCopies(tags.length, "?")));
+                    query.append(")");
+                } 
+                }
+                
+                
+
+                sql = query.toString();
+                stmt = conn.prepareStatement(sql);
+                
+                if(categoria != null && !categoria.trim().isEmpty()){
+                   stmt.setString(1, categoria);
+                   if (tags != null && tags.length > 0) {
+                        for (int i = 0; i < tags.length; i++) {
+                            stmt.setString(i + 2, tags[i]); 
+                            System.out.println("Tags: ");
+                            System.out.println(tags[i]);
+                        }
+                    }
+                }else{
+                   if (tags != null && tags.length > 0) {
+                        for (int i = 0; i < tags.length; i++) {
+                            stmt.setString(i + 1, tags[i]); 
+                            System.out.println("Tags: ");
+                            System.out.println(tags[i]);
+                        }
+                    } 
+                }
+                
+                
+            }
+
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                String nombre = rs.getString("nombre");
+                String editor = rs.getString("editor");
+                String bloqueo = rs.getString("bloqueo");
+                LocalDate fecha = rs.getDate("fecha").toLocalDate();
+                double costo = rs.getDouble("costo");
+                String descripcion = rs.getString("descripcion");
+                String categoriaRs = rs.getString("categoria");
+
+                Revista revista = new Revista(nombre, editor, bloqueo, fecha, costo, descripcion, categoriaRs);
+
+                revistas.add(revista);
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("Error en get revistas");
+        }
+
+        return revistas;
     }
 
 }
