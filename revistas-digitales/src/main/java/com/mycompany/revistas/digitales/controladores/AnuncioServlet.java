@@ -4,6 +4,7 @@
  */
 package com.mycompany.revistas.digitales.controladores;
 
+import com.mycompany.revistas.digitales.backend.Pago;
 import com.mycompany.revistas.digitales.backend.anuncios.Anuncio;
 import com.mycompany.revistas.digitales.backend.anuncios.TipoAnuncio;
 import java.io.IOException;
@@ -54,7 +55,7 @@ public class AnuncioServlet extends HttpServlet {
         // Crear el objeto TipoAnuncio y obtener el precio
         TipoAnuncio tipo = new TipoAnuncio(tipoAnuncio);
         double precio = tipo.obtenerPrecio();
-
+        
         // Crear el objeto Anuncio con InputStream para imagen y video
         Anuncio anuncio = new Anuncio(Anuncio.getTotal(), LocalDate.parse(fecha), tipoAnuncio, vigencia, texto,
                 imagenStream, videoStream, "ACTIVADO", precio);

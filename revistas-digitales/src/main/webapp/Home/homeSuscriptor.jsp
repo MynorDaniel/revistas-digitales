@@ -26,9 +26,28 @@
                         <input class="form-control me-2" type="search" name="query" placeholder="Buscar revista" aria-label="Buscar">
                         <select class="form-select me-2" name="filtro">
                             <option value="">Buscar por categoría</option>
-                            <option value="zzz">zzz</option>
-                            <option value="matematicas">Matemáticas</option>
-                            <option value="ciencias">Ciencias</option>
+                            <option value="Arte">Arte</option>
+                            <option value="Ciencia">Ciencia</option>
+                            <option value="Cine">Cine</option>
+                            <option value="Cultura">Cultura</option>
+                            <option value="Deportes">Deportes</option>
+                            <option value="Economia">Economía</option>
+                            <option value="Educacion">Educación</option>
+                            <option value="Entretenimiento">Entretenimiento</option>
+                            <option value="Gastronomia">Gastronomía</option>
+                            <option value="Historia">Historia</option>
+                            <option value="Literatura">Literatura</option>
+                            <option value="Medio Ambiente">Medio Ambiente</option>
+                            <option value="Moda">Moda</option>
+                            <option value="Musica">Música</option>
+                            <option value="Politica">Política</option>
+                            <option value="Psicologia">Psicología</option>
+                            <option value="Salud">Salud</option>
+                            <option value="Sociologia">Sociología</option>
+                            <option value="Tecnologia">Tecnología</option>
+                            <option value="Viajes">Viajes</option>
+
+
                         </select>
                         <div class="input-group me-2">
                             <input id="tagInput" class="form-control" type="text" placeholder="Seleccionar tags">

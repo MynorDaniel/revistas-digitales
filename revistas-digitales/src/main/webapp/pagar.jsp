@@ -67,7 +67,7 @@
             </table>
                     
             <form method="POST" action="${pageContext.request.contextPath}/PagoServlet">
-                <input class="btn btn-primary" type="submit" value="Confirmar" />
+                <input class="btn btn-primary" type="submit" value="Confirmar"/>
             </form>
         </div>      
                         

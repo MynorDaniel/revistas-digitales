@@ -30,10 +30,28 @@
             <label for="tagSelect">Tags</label>
             <select name="tagSelect" id="tagSelect" class="form-select" onchange="agregarTag()">
                 <option value="" disabled selected>Selecciona un tag</option>
-                <option value="Tecnología">Tecnología</option>
-                <option value="Deportes">Deportes</option>
-                <option value="Ciencia">Ciencia</option>
                 <option value="Arte">Arte</option>
+                <option value="Ciencia">Ciencia</option>
+                <option value="Cine">Cine</option>
+                <option value="Cultura">Cultura</option>
+                <option value="Deportes">Deportes</option>
+                <option value="Economia">Economía</option>
+                <option value="Educacion">Educación</option>
+                <option value="Entretenimiento">Entretenimiento</option>
+                <option value="Gastronomia">Gastronomía</option>
+                <option value="Historia">Historia</option>
+                <option value="Literatura">Literatura</option>
+                <option value="Medio Ambiente">Medio Ambiente</option>
+                <option value="Moda">Moda</option>
+                <option value="Musica">Música</option>
+                <option value="Politica">Política</option>
+                <option value="Psicologia">Psicología</option>
+                <option value="Salud">Salud</option>
+                <option value="Sociologia">Sociología</option>
+                <option value="Tecnologia">Tecnología</option>
+                <option value="Viajes">Viajes</option>
+
+
             </select>
             <br>
             <div class="mt-4">

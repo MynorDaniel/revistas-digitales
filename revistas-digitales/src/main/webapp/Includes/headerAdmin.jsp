@@ -35,11 +35,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/Admin/reportes.jsp" class="nav-link text-white">
-                        <i class="bi bi-table d-block mx-auto mb-1" style="font-size: 24px;"></i>
-                        Reportes
-                    </a>
-                </li>
+    <form action="${pageContext.request.contextPath}/ReporteServlet" method="POST">
+        <button type="submit" class="btn btn-link nav-link text-white" style="padding: 0; border: none; background: none;">
+            <i class="bi bi-table d-block mx-auto mb-1" style="font-size: 24px;"></i>
+            Reportes
+        </button>
+    </form>
+</li>
+
                 <li>
                     <a href="${pageContext.request.contextPath}/PerfilServlet" class="nav-link text-white">
                         <i class="bi bi-person-circle d-block mx-auto mb-1" style="font-size: 24px;"></i>

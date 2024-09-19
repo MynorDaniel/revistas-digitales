@@ -38,7 +38,7 @@ public class PagoServlet extends HttpServlet {
         boolean pagoExitoso = false;
         if(updateExitoso){
             Pago pago = new Pago();
-            pagoExitoso = pago.pagarAnuncio(nombreUsuario, anuncio.getPrecio()); 
+            pagoExitoso = pago.pagarAnuncio(nombreUsuario, anuncio.getPrecio(), anuncio.getFecha()); 
         }
         
         

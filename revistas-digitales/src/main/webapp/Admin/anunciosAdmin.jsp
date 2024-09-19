@@ -99,6 +99,12 @@
                 <button type="submit" id="submitButton" class="btn btn-primary" disabled>Cambiar Precio</button>
             </div>
         </form>
+        <br>
+        <form action="<%= request.getContextPath() %>/AnuncioCaducadoServlet" method="POST">
+            <div class="text-center">
+                <button type="submit" id="submitButton2" class="btn btn-danger">Desactivar anuncios caducados</button>
+            </div>
+        </form>
     </div>
 </body>
 </html>

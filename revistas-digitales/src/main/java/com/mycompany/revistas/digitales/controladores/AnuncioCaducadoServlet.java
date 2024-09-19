@@ -4,6 +4,7 @@
  */
 package com.mycompany.revistas.digitales.controladores;
 
+import com.mycompany.revistas.digitales.backend.anuncios.Anuncio;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,7 +24,12 @@ public class AnuncioCaducadoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ArrayList<Anuncio> anunciosCaducados = Anuncio.obtenerAnunciosCaducados();
+        for (Anuncio anuncioCaducado : anunciosCaducados) {
+            Anuncio.desactivar(String.valueOf(anuncioCaducado.getId()));
+        }
         
+        request.getRequestDispatcher("/Home/homeAdministrador.jsp").forward(request, response);
     }
 
 }

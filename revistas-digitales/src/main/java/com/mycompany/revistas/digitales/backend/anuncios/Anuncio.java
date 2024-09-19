@@ -193,5 +193,57 @@ public class Anuncio {
 
         return anuncios;
     }
+    
+    public static ArrayList<Anuncio> obtenerAnunciosCaducados() {
+        ArrayList<Anuncio> anunciosCaducados = new ArrayList<>();
+        String sql = "SELECT * FROM anuncio";
+        
+        try (Connection conexion = ConexionBD.obtenerConexion();
+             PreparedStatement stmt = conexion.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            LocalDate today = LocalDate.now();
+            
+            while (rs.next()) {
+                LocalDate fecha = rs.getDate("fecha").toLocalDate();
+                String vigencia = rs.getString("vigencia");
+                
+                long vigenciaDias = 0;
+                switch (vigencia) {
+                    case "1 dia":
+                        vigenciaDias = 1;
+                        break;
+                    case "3 dias":
+                        vigenciaDias = 3;
+                        break;
+                    case "1 semana":
+                        vigenciaDias = 7;
+                        break;
+                    case "2 semanas":
+                        vigenciaDias = 14;
+                        break;
+                }
+                
+                LocalDate fechaExpiracion = fecha.plusDays(vigenciaDias);
+                
+                if (today.isAfter(fechaExpiracion)) {
+                    int id = rs.getInt("id");
+                    String tipo = rs.getString("tipo");
+                    String texto = rs.getString("texto");
+                    InputStream imagen = rs.getBinaryStream("imagen");
+                    InputStream video = rs.getBinaryStream("video");
+                    String estado = rs.getString("estado");
+                    double precio = rs.getDouble("precio");
+                    
+                    Anuncio anuncio = new Anuncio(id, fecha, tipo, vigencia, texto, imagen, video, estado, precio);
+                    anunciosCaducados.add(anuncio);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en get anuncios caducados");
+        }
+
+        return anunciosCaducados;
+    }
 
 }

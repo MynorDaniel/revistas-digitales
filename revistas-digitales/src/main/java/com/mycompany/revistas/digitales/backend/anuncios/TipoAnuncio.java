@@ -45,13 +45,11 @@ public class TipoAnuncio {
         try (Connection conn = ConexionBD.obtenerConexion();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             
-            // Configurar el parámetro de la consulta
             stmt.setString(1, tipo);
             
             try (ResultSet rs = stmt.executeQuery()) {
-                // Verificar si se obtuvo un resultado
                 if (rs.next()) {
-                    precio = rs.getDouble("precio");
+                    precio0 = rs.getDouble("precio");
                 } else {
                     System.out.println("Tipo de anuncio no encontrado.");
                 }
