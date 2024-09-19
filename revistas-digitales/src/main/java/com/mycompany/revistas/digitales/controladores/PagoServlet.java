@@ -45,7 +45,7 @@ public class PagoServlet extends HttpServlet {
         if(updateExitoso && pagoExitoso){
             request.setAttribute("alertaAtributo", "Anuncio comprado exitosamente.");
         }else{
-            request.setAttribute("alertaAtributo", "Error en la compra, verifica que la fecha no se repita con otro anuncio.");
+            request.setAttribute("alertaAtributo", "Error en la compra");
         }
         
         Anunciante anunciante = new Anunciante(nombreUsuario);

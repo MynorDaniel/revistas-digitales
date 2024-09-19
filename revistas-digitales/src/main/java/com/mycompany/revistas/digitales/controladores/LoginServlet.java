@@ -5,6 +5,8 @@
 package com.mycompany.revistas.digitales.controladores;
 
 import com.mycompany.revistas.digitales.backend.Login;
+import com.mycompany.revistas.digitales.backend.anuncios.Anuncio;
+import com.mycompany.revistas.digitales.backend.editor.Revista;
 import com.mycompany.revistas.digitales.backend.usuarios.Anunciante;
 import com.mycompany.revistas.digitales.backend.usuarios.Editor;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
@@ -41,6 +44,9 @@ public class LoginServlet extends HttpServlet {
                     req.getRequestDispatcher("/Home/homeEditor.jsp").forward(req, resp);
                     break;
                 case "SUSCRIPTOR":
+                    ArrayList<Revista> revistas = Revista.getRevistas(null, null, null);
+                    req.setAttribute("revistasBuscadasAtributo", revistas);
+                    req.setAttribute("anunciosMostrarAtributo", Anuncio.obtenerAnuncios());
                     req.getRequestDispatcher("/Home/homeSuscriptor.jsp").forward(req, resp);
                     break;
                 case "ADMINISTRADOR":
@@ -57,6 +63,20 @@ public class LoginServlet extends HttpServlet {
         }else{
             req.setAttribute("mensajeAtributo", "Error al iniciar sesion, revisa los datos.");
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        }
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        HttpSession sesion = req.getSession(false);
+
+        switch ((String) sesion.getAttribute("rolAtributo")) {
+            case "SUSCRIPTOR":
+                ArrayList<Revista> revistas = Revista.getRevistas(null, null, null);
+                req.setAttribute("revistasBuscadasAtributo", revistas);
+                req.getRequestDispatcher("/Home/homeSuscriptor.jsp").forward(req, resp);
+                break;
         }
     }
 }

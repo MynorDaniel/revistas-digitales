@@ -38,7 +38,7 @@ Actores: Editor
 Descripcion: El editor ingresa al apartado de publicar revista, el sistema muestra un apartado para ingresar una imagen, nombre, descripcion, categoria, tags, fecha de publicacion, el editor ingresa los datos y presiona el boton de publicar
 Tipo: Primario
 
-Numero: 007
+Numero: 007 ---
 Caso de uso: Suscripcion a una revista
 Actores: Suscriptor
 Descripcion: El usuario ingresa a la revista de interes, el sistema muestra los datos de la revista, el usuario presiona el boton de suscribirse
@@ -50,13 +50,13 @@ Actores: Suscriptor
 Descripcion: El usuario ingresa a la revista, va al apartado de comentarios, escribe un comentario y lo publica, el sistema muestra el comentario reflejado
 Tipo: Secundario
 
-Numero: 009
+Numero: 009 ---
 Caso de uso: Edicion de perfil
 Actores: Usuario
 Descripcion: El usuario ingresa al apartado de perfil, el sistema muestra muestra la informacion del usuario con opciones de cambiarla, el usuario presiona el boton editar, cambia la informacion y presiona el boton de aceptar, el sistema muestra el perfil con los datos cambiados
 Tipo: Secundario
 
-Numero: 010
+Numero: 010 ---
 Caso de uso: Busqueda de revistas
 Actores: Suscriptor
 Descripcion: El usuario ingresa a la interfaz principal, el sistema muestra un area de texto para buscar, con la opcion de filtros, el usuario ingresa el nombre de la revista, los filtros y presiona el boton de buscar, el sistema muestra una lista de revistas que coincidan con la busqueda

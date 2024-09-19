@@ -17,7 +17,7 @@
 
             <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                 <li>
-                    <a href="${pageContext.request.contextPath}/Home/homeSuscriptor.jsp" class="nav-link text-secondary">
+                    <a href="${pageContext.request.contextPath}/LoginServlet" class="nav-link text-secondary">
                         <i class="bi bi-house-door-fill d-block mx-auto mb-1" style="font-size: 24px;"></i>
                         Home
                     </a>
@@ -29,9 +29,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/perfil.jsp" class="nav-link text-white">
+                    <a href="${pageContext.request.contextPath}/PerfilServlet" class="nav-link text-white">
                         <i class="bi bi-person-circle d-block mx-auto mb-1" style="font-size: 24px;"></i>
                         Perfil
+                    </a>
+                </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/LogOutServlet" class="nav-link text-white">
+                        <i class="bi bi-box-arrow-right d-block mx-auto mb-1" style="font-size: 24px;"></i>
+                        Cerrar Sesion
                     </a>
                 </li>
             </ul>

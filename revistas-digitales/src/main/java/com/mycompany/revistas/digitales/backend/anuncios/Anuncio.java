@@ -7,33 +7,33 @@ package com.mycompany.revistas.digitales.backend.anuncios;
 
 
 import com.mycompany.revistas.digitales.backend.bd.ConexionBD;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  *
  * @author mynordma
  */
 public class Anuncio {
-
     
     private final int id;
     private final LocalDate fecha;
     private final String tipo;
     private final String vigencia;
     private final String texto;
-    private final byte[] imagen; 
-    private final byte[] video;  
+    private final InputStream imagen; 
+    private final InputStream video;  
     private final String estado;
     private final double precio;
 
     // Constructor
-    public Anuncio(int id, LocalDate fecha, String tipo, String vigencia, String texto, 
-        byte[] imagen, byte[] video, String estado, double precio) {
+    public Anuncio(int id, LocalDate fecha, String tipo, String vigencia, String texto, InputStream imagen, InputStream video, String estado, double precio) {
         this.id = id;
         this.fecha = fecha;
         this.tipo = tipo;
@@ -65,11 +65,11 @@ public class Anuncio {
         return texto;
     }
 
-    public byte[] getImagen() {
+    public InputStream getImagen() {
         return imagen;
     }
 
-    public byte[] getVideo() {
+    public InputStream getVideo() {
         return video;
     }
 
@@ -88,7 +88,6 @@ public class Anuncio {
     public boolean guardarEnLaBD(String nombreUsuario) {
         String sql = "INSERT INTO anuncio (anunciante, fecha, tipo, vigencia, texto, imagen, video, estado, precio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        // Usar try-with-resources para garantizar que los recursos se cierren
         try (Connection conn = ConexionBD.obtenerConexion();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -98,14 +97,16 @@ public class Anuncio {
             pstmt.setString(4, vigencia);
             pstmt.setString(5, texto);
 
+            // Si la imagen no es nula, guardar el InputStream en la base de datos
             if (imagen != null) {
-                pstmt.setBytes(6, imagen); // Guardar imagen si existe
+                pstmt.setBinaryStream(6, imagen); // Guardar imagen como InputStream
             } else {
                 pstmt.setNull(6, java.sql.Types.BLOB);
             }
 
+            // Si el video no es nulo, guardar el InputStream en la base de datos
             if (video != null) {
-                pstmt.setBytes(7, video); // Guardar video si existe
+                pstmt.setBinaryStream(7, video); // Guardar video como InputStream
             } else {
                 pstmt.setNull(7, java.sql.Types.BLOB);
             }
@@ -114,14 +115,15 @@ public class Anuncio {
             pstmt.setDouble(9, precio);
 
             pstmt.executeUpdate();
-            
+
             return true;
 
         } catch (SQLException e) {
-            System.out.println("Error al guardar anuncio");
+            System.out.println("Error al guardar anuncio: " + e.getMessage());
             return false;
         }
     }
+
     
     public static int getTotal() {
         String query = "SELECT COUNT(*) AS total FROM anuncio";
@@ -161,4 +163,35 @@ public class Anuncio {
             System.out.println("Error al eliminar el anuncio: " + e.getMessage());
         }
     }
+    
+    public static ArrayList<Anuncio> obtenerAnuncios() {
+        String sql = "SELECT * FROM anuncio ORDER BY RAND() LIMIT 8"; // Selecciona aleatoriamente hasta 8 anuncios
+        ArrayList<Anuncio> anuncios = new ArrayList<>();
+
+        try (Connection conexion = ConexionBD.obtenerConexion(); 
+             PreparedStatement stmt = conexion.prepareStatement(sql); 
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                LocalDate fecha = rs.getDate("fecha").toLocalDate();
+                String tipo = rs.getString("tipo");
+                String vigencia = rs.getString("vigencia");
+                String texto = rs.getString("texto");
+                InputStream imagen = rs.getBinaryStream("imagen");
+                InputStream video = rs.getBinaryStream("video");
+                String estado = rs.getString("estado");
+                double precio = rs.getDouble("precio");
+
+                Anuncio anuncio = new Anuncio(id, fecha, tipo, vigencia, texto, imagen, video, estado, precio);
+                anuncios.add(anuncio);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error en obtener anuncios");
+        }
+
+        return anuncios;
+    }
+
 }

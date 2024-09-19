@@ -6,6 +6,8 @@ package com.mycompany.revistas.digitales.controladores;
 
 import com.mycompany.revistas.digitales.backend.editor.Publicacion;
 import com.mycompany.revistas.digitales.backend.editor.Revista;
+import com.mycompany.revistas.digitales.backend.suscriptor.MeGusta;
+import com.mycompany.revistas.digitales.backend.suscriptor.Suscripcion;
 import com.mycompany.revistas.digitales.backend.usuarios.Editor;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -36,6 +38,8 @@ public class RevistaServlet extends HttpServlet {
         sesion.setAttribute("revistaAtributo", revista);
         sesion.setAttribute("tagsAtributo", Revista.recuperarTags(revista.getNombre()));
         sesion.setAttribute("publicacionesAtributo", publicaciones);
+        sesion.setAttribute("numeroMegusta", MeGusta.numeroMegusta(revista.getNombre()));
+        sesion.setAttribute("usuarioSuscrito", Suscripcion.usuarioSuscrito(revista.getNombre(), (String) sesion.getAttribute("nombreAtributo")));
         request.getRequestDispatcher("/Editor/revista.jsp").forward(request, response);
     }
 

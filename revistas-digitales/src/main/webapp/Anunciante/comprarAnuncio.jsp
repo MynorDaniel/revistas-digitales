@@ -107,7 +107,7 @@
                         botonPagar.disabled = false;
                     } else if (tipoAnuncio === "Txt-Img" && textoAnuncio && imagenAnuncio) {
                         botonPagar.disabled = false;
-                    } else if (tipoAnuncio === "Video" && textoAnuncio && videoAnuncio) {
+                    } else if (tipoAnuncio === "Video" && videoAnuncio) {
                         botonPagar.disabled = false;
                     }
                 }

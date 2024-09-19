@@ -6,4 +6,8 @@ Usuario no tiene suficiente dinero.
 Imagen y video.
 Implementar todos los try with resources.
 Input empieza con cero.
-
+Arreglar tags y categorias.
+Consulta perfil editores.
+Revistas suscritas.
+Precio en compra de anuncios.
+Pagos.

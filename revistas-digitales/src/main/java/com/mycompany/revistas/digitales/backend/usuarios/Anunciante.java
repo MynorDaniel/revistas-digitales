@@ -6,6 +6,7 @@ package com.mycompany.revistas.digitales.backend.usuarios;
 
 import com.mycompany.revistas.digitales.backend.anuncios.Anuncio;
 import com.mycompany.revistas.digitales.backend.bd.ConexionBD;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,9 +28,9 @@ public class Anunciante extends Usuario {
     public void recuperarAnunciosEnLaBD() {
         String sql = "SELECT * FROM anuncio WHERE anunciante = ?";
 
-        try{
-            Connection conexion = ConexionBD.obtenerConexion();
-            PreparedStatement stmt = conexion.prepareStatement(sql);
+        try (Connection conexion = ConexionBD.obtenerConexion();
+             PreparedStatement stmt = conexion.prepareStatement(sql)) {
+
             stmt.setString(1, getNombre()); 
 
             try (ResultSet rs = stmt.executeQuery()) {
@@ -39,21 +40,26 @@ public class Anunciante extends Usuario {
                     String tipo = rs.getString("tipo");
                     String vigencia = rs.getString("vigencia");
                     String texto = rs.getString("texto");
-                    byte[] imagen = rs.getBytes("imagen");
-                    byte[] video = rs.getBytes("video");
+
+                    // Recuperar imagen como InputStream
+                    InputStream imagenStream = rs.getBinaryStream("imagen");
+
+                    // Recuperar video como InputStream
+                    InputStream videoStream = rs.getBinaryStream("video");
+
                     String estado = rs.getString("estado");
                     double precio = rs.getDouble("precio");
 
-                    Anuncio anuncio = new Anuncio(id, fecha.toLocalDate(), tipo, vigencia, texto, imagen, video, estado, precio);
+                    Anuncio anuncio = new Anuncio(id, fecha.toLocalDate(), tipo, vigencia, texto, imagenStream, videoStream, estado, precio);
                     anuncios.add(anuncio);
-                    
                 }
             }
 
         } catch (SQLException e) {
-            System.out.println("Error al recuperar los anuncios");
+            System.out.println("Error al recuperar los anuncios: " + e.getMessage());
         }
     }
+
 
     public ArrayList<Anuncio> getAnuncios() {
         return anuncios;

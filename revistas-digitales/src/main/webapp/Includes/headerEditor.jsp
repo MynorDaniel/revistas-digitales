@@ -35,9 +35,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/perfil.jsp" class="nav-link text-white">
+                    <a href="${pageContext.request.contextPath}/PerfilServlet" class="nav-link text-white">
                         <i class="bi bi-person-circle d-block mx-auto mb-1" style="font-size: 24px;"></i>
                         Perfil
+                    </a>
+                </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/LogOutServlet" class="nav-link text-white">
+                        <i class="bi bi-box-arrow-right d-block mx-auto mb-1" style="font-size: 24px;"></i>
+                        Cerrar Sesion
                     </a>
                 </li>
             </ul>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : homeSuscriptor
-    Created on : Sep 12, 2024, 12:30:05 AM
-    Author     : mynordma
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,60 +8,73 @@
     </head>
     <body>
         <jsp:include page="/Includes/headerSuscriptor.jsp"/>
-        <br>
-        <div class="container">
-            <form action="${pageContext.request.contextPath}/BuscarServlet" method="GET" class="d-flex align-items-center">
-                <!-- Campo de texto para búsqueda -->
-                <input class="form-control me-2" type="search" name="query" placeholder="Buscar revista" aria-label="Buscar">
-
-                <!-- Filtros para búsqueda -->
-                <select class="form-select me-2" name="filtro">
-                    <option value="">Buscar por categoría</option>
-                    <option value="zzz">zzz</option>
-                    <option value="matematicas">Matemáticas</option>
-                    <option value="ciencias">Ciencias</option>
-                </select>
-
-                <!-- Selección de tags -->
-                <div class="input-group me-2">
-                    <input id="tagInput" class="form-control" type="text" placeholder="Seleccionar tags">
-                    <button type="button" class="btn btn-outline-secondary" onclick="addTag()">Añadir</button>
-                </div>
-                <div id="selectedTags" class="d-flex flex-wrap mt-2"></div>
-
-                <!-- Campo oculto para los tags -->
-                <input type="hidden" name="tags" value="">
-                
-                <!-- Botón de envío -->
-                <button class="btn btn-outline-dark" type="submit">Buscar</button>
-            </form>
-                <br>
-                <!-- Etiquetas de ejemplo -->
-            <div class="tags-container">
-                <span class="badge bg-secondary me-2">Arte</span>
-                <span class="badge bg-secondary me-2">Ciencia</span>
-                <span class="badge bg-secondary me-2">Cine</span>
-                <span class="badge bg-secondary me-2">Cultura</span>
-                <span class="badge bg-secondary me-2">Deportes</span>
-                <span class="badge bg-secondary me-2">Economia</span>
-                <span class="badge bg-secondary me-2">Educacion</span>
-                <span class="badge bg-secondary me-2">Entretenimiento</span>
-                <span class="badge bg-secondary me-2">Gastronomia</span>
-                <span class="badge bg-secondary me-2">Historia</span>
-                <span class="badge bg-secondary me-2">Literatura</span>
-                <span class="badge bg-secondary me-2">Medio Ambiente</span>
-                <span class="badge bg-secondary me-2">Moda</span>
-                <span class="badge bg-secondary me-2">Musica</span>
-                <span class="badge bg-secondary me-2">Politica</span>
-                <span class="badge bg-secondary me-2">Psicologia</span>
-                <span class="badge bg-secondary me-2">Salud</span>
-                <span class="badge bg-secondary me-2">Sociologia</span>
-                <span class="badge bg-secondary me-2">Tecnologia</span>
-                <span class="badge bg-secondary me-2">Viajes</span>
-            </div>
-                <hr>
-        </div>
         
+        <!-- Barra lateral izquierda y derecha con anuncios -->
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Barra lateral izquierda -->
+                <div class="col-md-3 bg-light p-3">
+                    <jsp:include page="/Includes/anunciosIzquierda.jsp"/>
+                </div>
+
+                <!-- Contenido principal -->
+                <div class="col-md-6">
+                    <br>
+                    
+                    <!-- Formulario de búsqueda -->
+                    <form action="${pageContext.request.contextPath}/BuscarServlet" method="GET" class="d-flex align-items-center">
+                        <input class="form-control me-2" type="search" name="query" placeholder="Buscar revista" aria-label="Buscar">
+                        <select class="form-select me-2" name="filtro">
+                            <option value="">Buscar por categoría</option>
+                            <option value="zzz">zzz</option>
+                            <option value="matematicas">Matemáticas</option>
+                            <option value="ciencias">Ciencias</option>
+                        </select>
+                        <div class="input-group me-2">
+                            <input id="tagInput" class="form-control" type="text" placeholder="Seleccionar tags">
+                            <button type="button" class="btn btn-outline-secondary" onclick="addTag()">Añadir</button>
+                        </div>
+                        <div id="selectedTags" class="d-flex flex-wrap mt-2"></div>
+                        <input type="hidden" name="tags" value="">
+                        <button class="btn btn-outline-dark" type="submit">Buscar</button>
+                    </form>
+                    
+                    <br>
+                    <!-- Etiquetas de ejemplo -->
+                    <div class="tags-container">
+                        <span class="badge bg-secondary me-2">Arte</span>
+                        <span class="badge bg-secondary me-2">Ciencia</span>
+                        <span class="badge bg-secondary me-2">Cine</span>
+                        <span class="badge bg-secondary me-2">Cultura</span>
+                        <span class="badge bg-secondary me-2">Deportes</span>
+                        <span class="badge bg-secondary me-2">Economia</span>
+                        <span class="badge bg-secondary me-2">Educacion</span>
+                        <span class="badge bg-secondary me-2">Entretenimiento</span>
+                        <span class="badge bg-secondary me-2">Gastronomia</span>
+                        <span class="badge bg-secondary me-2">Historia</span>
+                        <span class="badge bg-secondary me-2">Literatura</span>
+                        <span class="badge bg-secondary me-2">Medio Ambiente</span>
+                        <span class="badge bg-secondary me-2">Moda</span>
+                        <span class="badge bg-secondary me-2">Musica</span>
+                        <span class="badge bg-secondary me-2">Politica</span>
+                        <span class="badge bg-secondary me-2">Psicologia</span>
+                        <span class="badge bg-secondary me-2">Salud</span>
+                        <span class="badge bg-secondary me-2">Sociologia</span>
+                        <span class="badge bg-secondary me-2">Tecnologia</span>
+                        <span class="badge bg-secondary me-2">Viajes</span>
+                    </div>
+                    
+                    <hr>
+                    <jsp:include page="/Includes/mostrarRevistas.jsp"/>
+                </div>
+
+                <!-- Barra lateral derecha -->
+                <div class="col-md-3 bg-light p-3">
+                    <jsp:include page="/Includes/anunciosDerecha.jsp"/>
+                </div>
+            </div>
+        </div>
+
         <jsp:include page="/Includes/footer.jsp"/>
         
         <script>
